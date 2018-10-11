@@ -65,6 +65,11 @@ class BinarySearchTree
             puts "***********************"
         end
     end
+
+    def breadth_first_search
+        
+    end
+
 end
 
 array =  [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
