@@ -74,4 +74,11 @@ class BinarySearchTree
         return nil
     end
 
+    def dfs_rec(value, current_node=@root)
+        return nil if current_node.nil?
+        return current_node if current_node.value == value
+        dfs_rec(value, current_node.left)
+        dfs_rec(value, current_node.right)
+    end
+
 end
