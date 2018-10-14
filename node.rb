@@ -9,10 +9,6 @@ class Node
         @right = nil
     end
 
-    def has_children?
-        !(@left.nil? && @right.nil?) ? true : false
-    end
-
     def display
         puts "Value: #{@value}"
         puts "Parent node value: #{@parent.value}" unless @parent.nil?
