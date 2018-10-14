@@ -13,10 +13,10 @@ class BinarySearchTree
     end
 
     def insert_node(value)
-        if (@tree.size == 0) #empty tree: take first element as root
+        if (@tree.size == 0) # empty tree: take first element as root
             @root = Node.new(value)
             @tree.push(@root)
-        else #compare new element with existing nodes
+        else # compare new node with existing nodes
             new_node = Node.new(value)
             compare_nodes(@root, new_node)
             @tree.push(new_node)
@@ -26,18 +26,18 @@ class BinarySearchTree
 
     def compare_nodes(node, new_node)
         if new_node.value >= node.value
-            if node.right_child.nil?
-                node.right_child = new_node
+            if node.right.nil?
+                node.right = new_node
                 new_node.parent = node
             else
-                compare_nodes(node.right_child, new_node)
+                compare_nodes(node.right, new_node)
             end
         else
-            if node.left_child.nil?
-                node.left_child = new_node
+            if node.left.nil?
+                node.left = new_node
                 new_node.parent = node
             else
-                compare_nodes(node.left_child, new_node)
+                compare_nodes(node.left, new_node)
             end
         end
     end
@@ -52,17 +52,24 @@ class BinarySearchTree
 
     def breadth_first_search(value)
         return nil if @root.nil?
-        queue = []
-        current_node = @root
-        queue.push(current_node)
-        while not queue.empty?
-            if current_node.value == value
-                return current_node
-            else
-                queue = queue + current_node.get_child_nodes if current_node.has_children?
-                queue.shift
-                current_node = queue[0] unless queue.empty?
-            end
+        queue = [@root]
+        until queue.empty?
+            current_node = queue.shift # queue: first in first out
+            return current_node if current_node.value == value
+            queue.push(current_node.left) unless current_node.left.nil?
+            queue.push(current_node.right) unless current_node.right.nil?
+        end
+        return nil
+    end
+
+    def depth_first_search(value)
+        return nil if @root.nil?
+        stack = [@root]
+        until stack.empty?
+            current_node = stack.pop # stack: last in first out
+            return current_node if current_node.value == value
+            stack.push(current_node.right) unless current_node.right.nil?
+            stack.push(current_node.left) unless current_node.left.nil? 
         end
         return nil
     end
