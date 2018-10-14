@@ -7,6 +7,7 @@ To help check if the program works correctly, the `Node` class has a `#display` 
 The `BinarySearchTree` class has the following search methods:
 
   * `#breadth_first_search` takes a target value and returns the node at which it is located using the breadth first search technique
+  * `#depth_first_search` does the same using the depth first search technique, more specifically preorder traversal (root-left-right)
 
 If the target node value is not located, each of these methods returns `nil`. 
 
